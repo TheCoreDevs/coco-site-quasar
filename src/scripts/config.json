@@ -1,0 +1,19 @@
+{
+  "network": "localhost",
+  "etherscan": {
+    "localhost": "url://tx/HASH",
+    "rinkeby": "https://rinkeby.etherscan.io/tx/HASH",
+    "homestead": "https://etherscan.io/tx/HASH"
+  },
+  "opensea": {
+    "id": "some-collection",
+    "localhost": "url://ID",
+    "rinkeby": "https://testnets.opensea.io/collection/ID",
+    "homestead": "https://opensea.io/collection/ID"
+  },
+  "infura": {
+    "localhost": "https://doesnt-exist.infura.io/v3/",
+    "rinkeby": "https://rinkeby.infura.io/v3/",
+    "homestead": "https://mainnet.infura.io/v3/"
+  }
+}

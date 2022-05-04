@@ -1,0 +1,3 @@
+[submodule "src/scripts"]
+	path = src/scripts
+	url = https://github.com/TheCoreDevs/ethers-backend.git

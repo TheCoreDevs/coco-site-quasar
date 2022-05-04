@@ -1,0 +1,24 @@
+{
+  "socials": {
+    "discord": "https://discord.com/invite/xgmtbnCC6y",
+    "twitter": "https://www.twitter.com/CocoNFT",
+    "opensea": "https://opensea.io/coconft",
+    "tiktok": "https://www.tiktok.com/@coconft",
+    "instagram": "https://www.instagram.com/coconft/",
+    "site": "https://coconft.com",
+    "privacyPolicy": "https://coconft.com/legal/privacy-policy",
+    "terms": "https://coconft.com/legal/nft-terms",
+    "blog": "https://blog.coconft.com/",
+    "account": "https://coconft.com/onboarding",
+    "learnMore": "https://help.coconft.com/category/41-cocoswirls"
+  },
+  "newsletter": {
+    "formId": "F12345",
+    "companyId": "F12345",
+    "metaData": {
+      "g": "12345",
+      "$email": "test@example.com"
+    }
+  },
+  "mintingPrice": 0.042
+}
