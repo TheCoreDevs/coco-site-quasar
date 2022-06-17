@@ -34,12 +34,6 @@
     <div class="text-h5 font-mulish">
       <strong>{{ amountMinted }} of {{ amountMax }} remaining</strong>
     </div>
-    <div class="row q-pt-sm q-mb-md">
-      <span class="text-uppercase fs-10 self-center">Price</span>
-      <span class="fs-18 q-pl-sm"
-        ><strong>{{ ethPrice }} ETH</strong></span
-      >
-    </div>
     <q-btn
       rounded
       class="custom-btn full-width full-height"
@@ -108,10 +102,6 @@
           <q-separator class="q-mt-lg" />
           <q-card-section>
             <div class="text-uppercase fs-10">Total</div>
-            <div>
-              <strong>{{ (ethPrice * mintAmount).toFixed(3) }} ETH</strong>
-              <span class="lighter q-pl-sm">~${{ currentPriceTotal }} USD</span>
-            </div>
           </q-card-section>
           <q-btn
             rounded
@@ -234,8 +224,6 @@ const openseaLink = ref(null);
 useAnimations.value = !reduceMotionEnabled();
 
 onMounted(async () => {
-  usdPrice.value = await getEthCost();
-
   store.subscribe(async (mutation, state) => updateState());
   updateState();
 
@@ -282,10 +270,6 @@ async function startMint() {
 // overlay
 function onItemClick(i) {
   mintAmount.value = i;
-
-  const ethCost = (i * ethPrice.value).toFixed(3);
-  const usdCost = (ethCost * usdPrice.value).toFixed(2);
-  currentPriceTotal.value = usdCost;
 }
 
 function onShow() {
@@ -313,7 +297,6 @@ async function gotoSwirl() {
 
 async function attemptMint() {
   const pair = getContractInstance("main");
-  const price = (mintAmount.value * ethPrice.value).toFixed(3);
   let output;
 
   const provider = getState().provider;
@@ -330,9 +313,9 @@ async function attemptMint() {
   console.log(signature);
   try {
     if (mintAmount.value === 1) {
-      output = await mint(1, pair, signature, price);
+      output = await mint(1, pair, signature);
     } else {
-      output = await mint(2, pair, signature, price);
+      output = await mint(2, pair, signature);
     }
   } catch (e) {
     showError(e.message);

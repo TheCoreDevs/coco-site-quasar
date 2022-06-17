@@ -70,17 +70,13 @@ export async function ownerOf(pair, tokenId) {
 	Inputs: [amount, sig]
 	Outputs: []
 */
-export async function mint(amount, pair, sig, cost) {
+export async function mint(amount, pair, sig) {
   const provider = getState().provider;
   const signer = await provider.getSigner();
   const address = await signer.getAddress();
   const signedContract = pair.contract.connect(signer);
-  const tx = {
-    nonce: (await provider.getTransactionCount(address)) || undefined,
-    gasLimit: pair.info.gasLimit[network],
-    value: ethers.utils.parseEther(cost),
-  };
-  return await signedContract.mint(amount, sig, tx);
+
+  return await signedContract.mint(amount, sig);
 }
 
 /*
