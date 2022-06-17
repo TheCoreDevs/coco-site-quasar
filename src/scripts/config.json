@@ -1,5 +1,5 @@
 {
-  "network": "localhost",
+  "network": "rinkeby",
   "etherscan": {
     "localhost": "url://tx/HASH",
     "rinkeby": "https://rinkeby.etherscan.io/tx/HASH",

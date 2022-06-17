@@ -2,7 +2,7 @@
   "name": "main",
   "address": {
     "localhost": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-    "rinkeby": "",
+    "rinkeby": "0xCdE454862de3FaFFd8AB3a48B5979E377a29a54A",
     "homestead": ""
   },
   "gasLimit": {

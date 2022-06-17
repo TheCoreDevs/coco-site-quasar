@@ -1,10 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref } from "firebase/database";
-import {
-  whitelists,
-  firebase,
-  testing
-} from "../database/database.json";
+import { whitelists, firebase, testing } from "../database/database.json";
 
 // Initialize Firebase
 const _ = initializeApp(firebase);
@@ -22,14 +18,14 @@ export async function getWhitelistStatus(address) {
   }
 
   return await new Promise((resolve, reject) => {
-    const refs = []
-    const ran = []
-    const signatures = []
-    const prefix = testing ? 'test/' : '';
+    const refs = [];
+    const ran = [];
+    const signatures = [];
+    const prefix = testing ? "test/" : "";
 
     for (let i = 0; i < whitelists.length; i++) {
-      refs.push(ref(db, `${prefix}${whitelists[i]}/${address}/`))
-      signatures.push(undefined)
+      refs.push(ref(db, `${prefix}${whitelists[i]}/${address}/`));
+      signatures.push(undefined);
     }
 
     for (let i = 0; i < whitelists.length; i++) {
@@ -38,26 +34,26 @@ export async function getWhitelistStatus(address) {
         signatures[tmpI] = snapshot.val();
         ran.push(true);
         validateOutput();
-      })
+      });
     }
 
     function validateOutput() {
       if (ran.length === refs.length) {
-        const finalArr = []
+        const finalArr = [];
 
         for (let i = 0; i < whitelists.length; i++) {
           const signature = signatures[i];
           const whitelist = whitelists[i];
 
           if (signature === undefined || signature === null) {
-            finalArr.push(null)
+            finalArr.push(null);
             continue;
           }
 
           finalArr.push({
             signature,
-            whitelist
-          })
+            whitelist,
+          });
         }
 
         resolve(finalArr);

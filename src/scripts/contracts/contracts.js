@@ -7,20 +7,20 @@ import { ethers } from "ethers";
 import { keys } from "src/scripts/keys";
 import { getAbi } from "src/scripts/abi/abi";
 
-const infuraNetworks = ['rinkeby', 'homestead']
-const allContracts = require.context('../contracts', true,  /.json$/)
+const infuraNetworks = ["rinkeby", "homestead"];
+const allContracts = require.context("../contracts", true, /.json$/);
 
 // imports all the contracts and caches them
-const contractCache = {}
+const contractCache = {};
 
 allContracts.keys().forEach((key) => {
-  const fileName = key.replace('./', '')
-  const resource = require(`../contracts/${fileName}`)
+  const fileName = key.replace("./", "");
+  const resource = require(`../contracts/${fileName}`);
   // const namespace = fileName.replace('.json', '')
   const json = JSON.parse(JSON.stringify(resource));
 
   contractCache[json.name] = json;
-})
+});
 
 /*
   Gets a JSONRpc contract instance and provider
@@ -29,7 +29,7 @@ function getContractJson(address, abi) {
   const provider = new ethers.providers.JsonRpcProvider();
   return {
     contract: new ethers.Contract(address, abi, provider),
-    provider
+    provider,
   };
 }
 
@@ -44,8 +44,8 @@ function getContractInfura(address, abi) {
 
   return {
     contract: new ethers.Contract(address, abi, provider),
-    provider
-  }
+    provider,
+  };
 }
 
 /*
@@ -75,12 +75,12 @@ export function getContractInstance(name) {
   if (infuraNetworks.includes(network)) {
     return {
       ...getContractInfura(address, abi),
-      info
-    }
+      info,
+    };
   }
 
   return {
     ...getContractJson(address, abi),
-    info
-  }
+    info,
+  };
 }
